@@ -1,10 +1,10 @@
 public class Simulation{
 
+    private int partifini=0;
     private Monde monde = new Monde(); 
 
     public void routine(){
-        int i=0
-        while(i<1000){
+        while(partifini!=1){
             monde.JouerTour();
         }
     }
