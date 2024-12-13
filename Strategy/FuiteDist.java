@@ -1,4 +1,4 @@
-public class AttaquerDist extends StrategieDist{
+public class FuiteDist extends StrategieDist{
      @Override
     public void executer(Soldat ennemi){
 

@@ -1,3 +1,3 @@
-public class StrategieDist {
+public interface Strategie{
     public void executer(Soldat soldat);
 }
