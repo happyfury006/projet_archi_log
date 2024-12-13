@@ -1,3 +1,3 @@
-public interface StrategieDist {
-    public void JouerTour();
+public class StrategieDist {
+    public void executer(Soldat soldat);
 }

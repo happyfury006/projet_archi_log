@@ -1,3 +1,6 @@
-public class AttaquerDist implements StrategieDist{
+public class AttaquerDist extends StrategieDist{
+     @Override
+    public void executer(Soldat ennemi){
 
+    }
 }
