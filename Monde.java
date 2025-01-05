@@ -77,17 +77,33 @@ public class Monde {
     }
 
     public void jouerTour() {
-        for (Soldat soldat : entiteLumineux) {
-            if (soldat != null) {
-                soldat.jouerTour(getEnnemis(soldat));
+        if (tourJoueur == 0) {
+            System.out.println("Tour du joueur Lumineux");
+            for (Soldat soldat : entiteLumineux) {
+                if (soldat != null) {
+                    soldat.jouerTour(getEnnemis(soldat));
+                }
             }
-        }
-        for (Soldat soldat : entiteObscur) {
-            if (soldat != null) {
-                soldat.jouerTour(getEnnemis(soldat));
+            afficherCarte();
+        } else {
+            System.out.println("Tour du joueur Obscur");
+            for (Soldat soldat : entiteObscur) {
+                if (soldat != null) {
+                    soldat.jouerTour(getEnnemis(soldat));
+                }
             }
+            afficherCarte();
         }
-        // Vérifiez si la partie est terminée
+        tourJoueur = (tourJoueur + 1) % 2;
+        nbtour++;
+        if (nbtour == 50) {
+            partiFini = true;
+        }
+
+        // Vérifiez si la partie est terminée, elle est terminée si une des équipes n'a plus de soldats
+        if (estRempliDeNull(entiteLumineux) || estRempliDeNull(entiteObscur)) {
+            partiFini = true;
+        }
     }
 
 
