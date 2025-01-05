@@ -1,15 +1,15 @@
-public class Simulation{
+// Simulation.java
+public class Simulation {
 
-    private int partifini=0;
-    private Monde monde = new Monde(); 
+    public static void main(String[] args) {
+        Simulation simulation = new Simulation();
+        simulation.routine();
+    }
 
-    public void routine(){
-        while(partifini!=1){
-            monde.JouerTour();
+    public void routine() {
+        Monde monde = new Monde();
+        while (!monde.isPartiFini()) {
+            monde.jouerTour();
         }
     }
-    public static void main(String args[]) {
-        this.routine();
-    }
-
 }

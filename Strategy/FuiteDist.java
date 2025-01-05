@@ -1,6 +1,6 @@
-public class FuiteDist extends StrategieDist{
-     @Override
-    public void executer(Soldat ennemi){
-
+public class FuiteDist implements Strategie {
+    @Override
+    public void executer(Soldat soldat) {
+        System.out.println("Le soldat fuit à distance.");
     }
 }

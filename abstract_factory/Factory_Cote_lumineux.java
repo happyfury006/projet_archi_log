@@ -1,9 +1,12 @@
-public class Factory_Cote_lumineux implements AgentFactory {
+public class Factory_Cote_Lumineux implements AgentFactory {
 
-    public Soldat creerDist(){
-        
-    };
-    public Soldat creerCac();
+    @Override
+    public Soldat creerDist(int x, int y) {
+        return new Chiss(x, y);
+    }
 
-
+    @Override
+    public Soldat creerCac(int x, int y) {
+        return new Twilek(x, y);
+    }
 }

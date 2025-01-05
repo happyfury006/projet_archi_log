@@ -1,4 +1,6 @@
-public abstract class Soldat implements Strategie {
+
+// Soldat.java
+public abstract class Soldat {
 
     private int x;
     private int y;
@@ -6,13 +8,19 @@ public abstract class Soldat implements Strategie {
     private int dps;
     private Strategie strategie;
 
-    
-    public Soldat(int nx,int ny){
-        x=nx;
-        y=ny;
-        hp=100;
-        dps=0;
-        
+    public Soldat(int x, int y, int dps) {
+        this.x = x;
+        this.y = y;
+        this.hp = 100;
+        this.dps = dps;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public int getHp() {
@@ -21,9 +29,13 @@ public abstract class Soldat implements Strategie {
 
     public void setHp(int hp) {
         this.hp = hp;
-        // Mise à jour de la stratégie en fonction des HP
         ajusterStrategie();
     }
+
+    public int getDps() {
+        return dps;
+    }
+
     public Strategie getStrategie() {
         return strategie;
     }
@@ -34,16 +46,9 @@ public abstract class Soldat implements Strategie {
 
     protected abstract void ajusterStrategie();
 
-    public void agir() {
+    public void jouerTour() {
         if (strategie != null) {
             strategie.executer(this);
-        } else {
-            System.out.println("Aucune stratégie définie !");
         }
-
-    public void JouerTour(){
-        this.setHp(this.getHp);
-        this.agir();
     }
-}
 }

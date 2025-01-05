@@ -1,3 +1,4 @@
-public interface Strategie{
-    public void executer(Soldat soldat);
+// Strategie.java
+public interface Strategie {
+    void executer(Soldat soldat);
 }

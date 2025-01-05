@@ -1,72 +1,81 @@
+// Monde.java
+import java.util.Random;
+
 public class Monde {
-    
-    private int nbmaxsoldatside = 10;
-    private Soldat[] Entitelumineux;
-    private Soldat[] Entiteobscur;
-    private int[][] Carte;
-    private int tourjoueur;
+
+    private final int nbMaxSoldats = 10;
+    private final Soldat[] entiteLumineux;
+    private final Soldat[] entiteObscur;
+    private final int[][] carte;
+    private int tourJoueur;
+    private boolean partiFini;
 
     public Monde() {
-        // Initialisation des tableaux
-        Entitelumineux = new Soldat[nbmaxsoldatside];
-        Entiteobscur = new Soldat[nbmaxsoldatside];
-        Carte = new int[nbmaxsoldatside][nbmaxsoldatside];
-
-        // Initialisation du tour du joueur
-        tourjoueur = (int)(Math.random() * 2);
-        System.out.println("Le joueur " + tourjoueur + " commence a jouer \n");
-        partifini=0;
+        entiteLumineux = new Soldat[nbMaxSoldats];
+        entiteObscur = new Soldat[nbMaxSoldats];
+        carte = new int[nbMaxSoldats][nbMaxSoldats];
+        tourJoueur = new Random().nextInt(2);
+        partiFini = false;
+        System.out.println("Le joueur " + (tourJoueur == 0 ? "Lumineux" : "Obscur") + " commence à jouer.");
     }
 
-    public boolean estRempliDeNull(Soldat[] tableau) {
-    for (int i = 0; i < tableau.length; i++) {
-        if (tableau[i] != null) {
-            return false;  // Un élément n'est pas null
-        }
+    public boolean isPartiFini() {
+        return partiFini;
     }
-    return true;  // Tous les éléments sont null
-}
 
-
-    public void JouerTour() {
-    if (super.partifini != 1) {
-        int i;
-        switch (tourjoueur) {
-            case 0:
-                if (Entitelumineux != null && !estRempliDeNull(Entitelumineux)) {  // Vérification si le tableau est rempli de null
-                    for (i = 0; i < nbmaxsoldatside; i++) {
-                        if (Entitelumineux[i] != null) {
-                            Entitelumineux[i].JouerTour();
-                        }
-                    }
-                    tourjoueur = 1;
-                } else {
-                    if (estRempliDeNull(Entiteobscur)) {
-                        System.out.println("Le côté obscur de la force a gagné ! Bravo soldat.\n");
-                        super.partifini=1;
+    public void afficherCarte() {
+        for (int i = 0; i < nbMaxSoldats; i++) {
+            for (int j = 0; j < nbMaxSoldats; j++) {
+                boolean found = false;
+                for (Soldat soldat : entiteLumineux) {
+                    if (soldat != null && soldat.getX() == i && soldat.getY() == j) {
+                        System.out.print(" L ");
+                        found = true;
+                        break;
                     }
                 }
-                break;
-            case 1:
-                if (Entiteobscur != null && !estRempliDeNull(Entiteobscur)) {  // Vérification si le tableau est rempli de null
-                    for (i = 0; i < nbmaxsoldatside; i++) {
-                        if (Entiteobscur[i] != null) {
-                            Entiteobscur[i].JouerTour();
+                if (!found) {
+                    for (Soldat soldat : entiteObscur) {
+                        if (soldat != null && soldat.getX() == i && soldat.getY() == j) {
+                            System.out.print(" O ");
+                            found = true;
+                            break;
                         }
                     }
-                    tourjoueur = 0;
-                } else {
-                    if (estRempliDeNull(Entitelumineux)) {
-                        System.out.println("Le côté lumineux de la force a gagné ! Bravo soldat.\n");
-                        super.partifini=1;
-                    }
                 }
-                break;
+                if (!found) {
+                    System.out.print(" . ");
+                }
+            }
+            System.out.println();
         }
-    } else {
-        System.out.println("Un joueur a déjà gagné !!!\n");
+    }
+
+    public void jouerTour() {
+        Soldat[] equipeActuelle = (tourJoueur == 0) ? entiteLumineux : entiteObscur;
+        Soldat[] equipeAdverse = (tourJoueur == 0) ? entiteObscur : entiteLumineux;
+
+        if (equipeActuelle != null && !estRempliDeNull(equipeActuelle)) {
+            for (Soldat soldat : equipeActuelle) {
+                if (soldat != null) {
+                    soldat.jouerTour();
+                }
+            }
+            tourJoueur = (tourJoueur + 1) % 2;
+        } else {
+            if (estRempliDeNull(equipeAdverse)) {
+                System.out.println("Le camp " + (tourJoueur == 0 ? "obscur" : "lumineux") + " a gagné !");
+                partiFini = true;
+            }
+        }
+    }
+
+    private boolean estRempliDeNull(Soldat[] tableau) {
+        for (Soldat soldat : tableau) {
+            if (soldat != null) {
+                return false;
+            }
+        }
+        return true;
     }
 }
-
-}
-

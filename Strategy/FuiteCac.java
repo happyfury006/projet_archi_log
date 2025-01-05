@@ -1,6 +1,6 @@
-public class FuiteCac extends StrategieCac{
-     @Override
-    public void executer(Soldat ennemi){
-
+public class FuiteCac implements Strategie {
+    @Override
+    public void executer(Soldat soldat) {
+        System.out.println("Le soldat fuit au corps à corps.");
     }
 }
