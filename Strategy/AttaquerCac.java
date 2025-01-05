@@ -4,17 +4,17 @@ import java.util.List;
 
 public class AttaquerCac implements Strategie {
     
-    private double distance(Soldat soldat, Soldat adversaire) {
-        double dx = soldat.getX() - adversaire.getX();
-        double dy = soldat.getY() - adversaire.getY();
+    private int distance(Soldat soldat, Soldat adversaire) {
+        int dx = soldat.getX() - adversaire.getX();
+        int dy = soldat.getY() - adversaire.getY();
         return Math.sqrt(dx * dx + dy * dy);
     }
     
     private Soldat trouverAdversaireLePlusProche(Soldat soldat, List<Soldat> ennemis) {
         Soldat adversaireProche = null;
-        double distanceMin = Double.MAX_VALUE;
+        int distanceMin = int.MAX_VALUE;
         for (Soldat ennemi : ennemis) {
-            double distance = distance(soldat, ennemi);
+            int distance = distance(soldat, ennemi);
             if (distance < distanceMin) {
                 distanceMin = distance;
                 adversaireProche = ennemi;
@@ -27,7 +27,7 @@ public class AttaquerCac implements Strategie {
     public void executer(Soldat soldat, List<Soldat> ennemis) {
         Soldat adversaireProche = trouverAdversaireLePlusProche(soldat, ennemis);
         if (adversaireProche != null) {
-            double distance = distance(soldat, adversaireProche);
+            int distance = distance(soldat, adversaireProche);
             if (distance > soldat.getPortee()) {
                 System.out.println("Le soldat se rapproche de l'adversaire.");
                 soldat.seDeplacerVers(adversaireProche.getX(), adversaireProche.getY());
@@ -35,6 +35,9 @@ public class AttaquerCac implements Strategie {
                 System.out.println("Le soldat attaque au corps à corps avec " + soldat.getDps() + " de dégâts.");
                 adversaireProche.setHp(adversaireProche.getHp() - soldat.getDps());
             }
+        }
+        else {
+            System.out.println("aucun ennemi à attaquer");
         }
     }
 }
