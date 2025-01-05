@@ -1,3 +1,4 @@
+package abstract_factory;
 
 public class Factory_Cote_Obscur implements AgentFactory {
 

@@ -1,5 +1,7 @@
 // Monde.java
 import java.util.Random;
+import abstract_factory.*;
+import Strategy.*;
 
 public class Monde {
 

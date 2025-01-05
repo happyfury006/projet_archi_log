@@ -1,3 +1,5 @@
+package abstract_factory;
+
 public class Twilek extends Soldat {
     public Twilek(int x, int y) {
         super(x, y, 50);

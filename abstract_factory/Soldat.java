@@ -1,3 +1,4 @@
+package abstract_factory;
 
 // Soldat.java
 public abstract class Soldat {
