@@ -1,10 +1,11 @@
 package Strategy;
 import abstract_factory.*;
+import java.util.List;
 public class AttaquerCac implements Strategie {
     
-    private double distance(Soldat soldat, Soldat adversaire) {
-        double dx = soldat.getX() - adversaire.getX();
-        double dy = soldat.getY() - adversaire.getY();
+    private int distance(Soldat soldat, Soldat adversaire) {
+        int dx = soldat.getX() - adversaire.getX();
+        int dy = soldat.getY() - adversaire.getY();
         return Math.max(dx, dy);
     }
     
