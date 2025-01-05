@@ -79,32 +79,40 @@ public class Monde {
     public void jouerTour() {
         if (tourJoueur == 0) {
             System.out.println("Tour du joueur Lumineux");
-            for (Soldat soldat : entiteLumineux) {
+            for (int i = 0; i < entiteLumineux.length; i++) {
+                Soldat soldat = entiteLumineux[i];
                 if (soldat != null) {
                     soldat.jouerTour(getEnnemis(soldat));
+                    if (soldat.getHp() <= 0) {
+                        entiteLumineux[i] = null;
+                    }
                 }
             }
-            afficherCarte();
         } else {
             System.out.println("Tour du joueur Obscur");
-            for (Soldat soldat : entiteObscur) {
+            for (int i = 0; i < entiteObscur.length; i++) {
+                Soldat soldat = entiteObscur[i];
                 if (soldat != null) {
                     soldat.jouerTour(getEnnemis(soldat));
+                    if (soldat.getHp() <= 0) {
+                        entiteObscur[i] = null;
+                    }
                 }
             }
-            afficherCarte();
         }
+        afficherCarte();
         tourJoueur = (tourJoueur + 1) % 2;
         nbtour++;
-        if (nbtour == 50) {
-            partiFini = true;
-        }
-
-        // Vérifiez si la partie est terminée, elle est terminée si une des équipes n'a plus de soldats
+    
         if (estRempliDeNull(entiteLumineux) || estRempliDeNull(entiteObscur)) {
             partiFini = true;
+            System.out.println("La partie est terminée !");
+        } else if (nbtour == 50) {
+            partiFini = true;
+            System.out.println("Limite de tours atteinte !");
         }
     }
+    
 
 
     private void initialiserSoldats(Soldat[] equipe, String camp) {
