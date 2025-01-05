@@ -30,8 +30,13 @@ public class FuiteDist implements Strategie {
                 System.out.println("Le soldat s'enfuit de l'adversaire le plus proche.");
                 int dx = soldat.getX() - adversaireProche.getX();
                 int dy = soldat.getY() - adversaireProche.getY();
-                int nx = soldat.getX() + dx;
-                int ny = soldat.getY() + dy;
+                if (dx != 0) {
+                    int nx = soldat.getX() + (dx / Math.abs(dx));
+                }
+                
+                if (dy != 0) {
+                    int ny = soldat.getY() + (dy / Math.abs(dy));
+                }
                 soldat.seDeplacerVers(nx, ny);
             } else {
                 System.out.println("Le soldat reste sur place.");
