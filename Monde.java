@@ -32,7 +32,7 @@ public class Monde {
         return partiFini;
     }
     
-    private void afficherCarte() {
+    public void afficherCarte() {
         for (int i = 0; i < nbMaxSoldats; i++) {
             for (int j = 0; j < nbMaxSoldats; j++) {
                 boolean found = false;
