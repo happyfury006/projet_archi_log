@@ -79,7 +79,25 @@ public class Monde {
                          .toList();
         }
     }
-    
+
+    //Supression des soldats morts
+    private void retirerSoldatDeLEquipe(Soldat soldat) {
+        if (Arrays.asList(entiteLumineux).contains(soldat)) {
+            for (int i = 0; i < entiteLumineux.length; i++) {
+                if (entiteLumineux[i] == soldat) {
+                    entiteLumineux[i] = null;
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < entiteObscur.length; i++) {
+                if (entiteObscur[i] == soldat) {
+                    entiteObscur[i] = null;
+                    break;
+                }
+            }
+        }
+    }
 
     public void jouerTour() {
         if (tourJoueur == 0) {
@@ -90,6 +108,7 @@ public class Monde {
                     soldat.jouerTour(getEnnemis(soldat));
                     if (soldat.getHp() <= 0) {
                         entiteLumineux[i] = null;
+                        retirerSoldatDeLEquipe(soldat);
                     }
                 }
             }
@@ -101,6 +120,7 @@ public class Monde {
                     soldat.jouerTour(getEnnemis(soldat));
                     if (soldat.getHp() <= 0) {
                         entiteObscur[i] = null;
+                        retirerSoldatDeLEquipe(soldat);
                     }
                 }
             }
