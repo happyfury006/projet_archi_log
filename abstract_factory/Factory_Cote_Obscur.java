@@ -1,5 +1,5 @@
 package abstract_factory;
-
+import Strategy.*;
 public class Factory_Cote_Obscur implements AgentFactory {
 
     @Override

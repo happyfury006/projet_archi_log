@@ -1,5 +1,5 @@
 package abstract_factory;
-
+import Strategy.*;
 // Soldat.java
 public abstract class Soldat {
 

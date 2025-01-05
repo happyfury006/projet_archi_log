@@ -1,5 +1,5 @@
 package abstract_factory;
-
+import Strategy.*;
 public class Zabrak extends Soldat {
     public Zabrak(int x, int y) {
         super(x, y, 50);

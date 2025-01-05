@@ -1,5 +1,5 @@
 package Strategy;
-
+import abstract_factory.*;
 public class AttaquerCac implements Strategie {
     @Override
     public void executer(Soldat soldat) {
