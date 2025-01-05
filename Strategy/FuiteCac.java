@@ -24,18 +24,22 @@ public class FuiteCac implements Strategie {
     @Override
     public void executer(Soldat soldat, List<Soldat> ennemis) {
         Soldat adversaireProche = trouverAdversaireLePlusProche(soldat, ennemis);
+        int nx=0;
+        int ny=0;
+        int dy=0;
+        int dx=0;
         if (adversaireProche != null) {
             int distance = distance(soldat, adversaireProche);
             if (distance <= adversaireProche.getPortee()) {
                 System.out.println("Le soldat s'enfuit de l'adversaire le plus proche.");
-                int dx = soldat.getX() - adversaireProche.getX();
-                int dy = soldat.getY() - adversaireProche.getY();
+                dx = soldat.getX() - adversaireProche.getX();
+                dy = soldat.getY() - adversaireProche.getY();
                 if (dx != 0) {
-                    int nx = soldat.getX() + (dx / Math.abs(dx));
+                    nx = soldat.getX() + (dx / Math.abs(dx));
                 }
                 
                 if (dy != 0) {
-                    int ny = soldat.getY() + (dy / Math.abs(dy));
+                    ny = soldat.getY() + (dy / Math.abs(dy));
                 }
                 soldat.seDeplacerVers(nx, ny);
             } else {
