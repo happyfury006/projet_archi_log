@@ -30,7 +30,16 @@ public class AttaquerDist implements Strategie {
             int distance = distance(soldat, adversaireProche);
             if (distance > soldat.getPortee()) {
                 System.out.println("Le soldat se rapproche de l'adversaire.");
-                soldat.seDeplacerVers(adversaireProche.getX(), adversaireProche.getY());
+                int dx = soldat.getX() - adversaireProche.getX();
+                int dy = soldat.getY() - adversaireProche.getY();
+                if (dx != 0) {
+                    int nx = soldat.getX() - (dx / Math.abs(dx));
+                }
+                
+                if (dy != 0) {
+                    int ny = soldat.getY() - (dy / Math.abs(dy));
+                }
+                soldat.seDeplacerVers(nx, ny);
             } else {
                 System.out.println("Le soldat attaque à distance " + soldat.getDps() + " de dégâts.");
                 adversaireProche.setHp(adversaireProche.getHp() - soldat.getDps());

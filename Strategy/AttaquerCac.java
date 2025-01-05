@@ -1,12 +1,10 @@
 package Strategy;
 import abstract_factory.*;
-import java.util.List;
-
 public class AttaquerCac implements Strategie {
     
-    private int distance(Soldat soldat, Soldat adversaire) {
-        int dx = soldat.getX() - adversaire.getX();
-        int dy = soldat.getY() - adversaire.getY();
+    private double distance(Soldat soldat, Soldat adversaire) {
+        double dx = soldat.getX() - adversaire.getX();
+        double dy = soldat.getY() - adversaire.getY();
         return Math.max(dx, dy);
     }
     
@@ -22,22 +20,27 @@ public class AttaquerCac implements Strategie {
         }
         return adversaireProche;
     }
-
     @Override
-    public void executer(Soldat soldat, List<Soldat> ennemis) {
-        Soldat adversaireProche = trouverAdversaireLePlusProche(soldat, ennemis);
+    public void executer(Soldat soldat) {
+        Soldat adversaireProche = trouverAdversaireLePlusProche(soldat);
         if (adversaireProche != null) {
-            int distance = distance(soldat, adversaireProche);
+            double distance = distance(soldat, adversaireProche);
             if (distance > soldat.getPortee()) {
                 System.out.println("Le soldat se rapproche de l'adversaire.");
-                soldat.seDeplacerVers(adversaireProche.getX(), adversaireProche.getY());
+                int dx = soldat.getX() - adversaireProche.getX();
+                int dy = soldat.getY() - adversaireProche.getY();
+                if (dx != 0) {
+                    int nx = soldat.getX() - (dx / Math.abs(dx));
+                }
+                
+                if (dy != 0) {
+                    int ny = soldat.getY() - (dy / Math.abs(dy));
+                }
+                soldat.seDeplacerVers(nx, ny);
             } else {
                 System.out.println("Le soldat attaque au corps à corps avec " + soldat.getDps() + " de dégâts.");
-                adversaireProche.setHp(adversaireProche.getHp() - soldat.getDps());
+                adversaireProche.setHp(adversaireProche.getHp()-soldat.getDps());
             }
-        }
-        else {
-            System.out.println("aucun ennemi à attaquer");
         }
     }
 }
