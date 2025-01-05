@@ -10,8 +10,8 @@ public class Simulation {
     public void routine() {
         Monde monde = new Monde();
         monde.afficherCarte();
-        // while (!monde.isPartiFini()) {
-        //     monde.jouerTour();
-        // }
+        while (!monde.isPartiFini()) {
+            monde.jouerTour();
+        }
     }
 }
