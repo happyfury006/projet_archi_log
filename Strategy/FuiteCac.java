@@ -1,6 +1,7 @@
 package Strategy;
 import abstract_factory.*;
 import java.util.List;
+
 public class FuiteCac implements Strategie {
     private double distance(Soldat soldat, Soldat adversaire) {
         double dx = soldat.getX() - adversaire.getX();
@@ -8,11 +9,17 @@ public class FuiteCac implements Strategie {
         return Math.sqrt(dx * dx + dy * dy);
     }
     
-    private Soldat trouverAdversaireLePlusProche(Soldat soldat) {
-        // Implémenter la logique pour trouver l'adversaire le plus proche
-        // Cela peut impliquer de parcourir une liste d'adversaires et de calculer la distance
-        
-        return null; // Retourner l'adversaire le plus proche trouvé
+    private Soldat trouverAdversaireLePlusProche(Soldat soldat, List<Soldat> ennemis) {
+        Soldat adversaireProche = null;
+        double distanceMin = Double.MAX_VALUE;
+        for (Soldat ennemi : ennemis) {
+            double distance = distance(soldat, ennemi);
+            if (distance < distanceMin) {
+                distanceMin = distance;
+                adversaireProche = ennemi;
+            }
+        }
+        return adversaireProche;
     }
     @Override
     public void executer(Soldat soldat, List<Soldat> ennemis) {
