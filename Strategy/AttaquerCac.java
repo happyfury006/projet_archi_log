@@ -21,8 +21,8 @@ public class AttaquerCac implements Strategie {
         return adversaireProche;
     }
     @Override
-    public void executer(Soldat soldat) {
-        Soldat adversaireProche = trouverAdversaireLePlusProche(soldat);
+    public void executer(Soldat soldat,List<Soldat> ennemis) {
+        Soldat adversaireProche = trouverAdversaireLePlusProche(soldat,ennemis);
         int nx=0;
         int ny=0;
         int dy=0;
