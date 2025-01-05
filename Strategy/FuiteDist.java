@@ -11,7 +11,7 @@ public class FuiteDist implements Strategie {
     
     private Soldat trouverAdversaireLePlusProche(Soldat soldat, List<Soldat> ennemis) {
         Soldat adversaireProche = null;
-        int distanceMin = int.MAX_VALUE;
+        int distanceMin = 1000
         for (Soldat ennemi : ennemis) {
             int distance = distance(soldat, ennemi);
             if (distance < distanceMin) {
