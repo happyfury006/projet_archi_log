@@ -23,18 +23,22 @@ public class AttaquerCac implements Strategie {
     @Override
     public void executer(Soldat soldat) {
         Soldat adversaireProche = trouverAdversaireLePlusProche(soldat);
+        int nx=0;
+        int ny=0;
+        int dy=0;
+        int dx=0;
         if (adversaireProche != null) {
             double distance = distance(soldat, adversaireProche);
             if (distance > soldat.getPortee()) {
                 System.out.println("Le soldat se rapproche de l'adversaire.");
-                int dx = soldat.getX() - adversaireProche.getX();
-                int dy = soldat.getY() - adversaireProche.getY();
+                 dx = soldat.getX() - adversaireProche.getX();
+                 dy = soldat.getY() - adversaireProche.getY();
                 if (dx != 0) {
-                    int nx = soldat.getX() - (dx / Math.abs(dx));
+                     nx = soldat.getX() - (dx / Math.abs(dx));
                 }
                 
                 if (dy != 0) {
-                    int ny = soldat.getY() - (dy / Math.abs(dy));
+                     ny = soldat.getY() - (dy / Math.abs(dy));
                 }
                 soldat.seDeplacerVers(nx, ny);
             } else {
