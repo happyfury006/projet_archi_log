@@ -1,6 +1,8 @@
 import java.util.Random;
 import abstract_factory.*;
 import Strategy.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class Monde {
 
@@ -29,34 +31,7 @@ public class Monde {
     public boolean isPartiFini() {
         return partiFini;
     }
-
-    // public void afficherCarte() {
-    //     for (int i = 0; i < nbMaxSoldats; i++) {
-    //         for (int j = 0; j < nbMaxSoldats; j++) {
-    //             boolean found = false;
-    //             for (Soldat soldat : entiteLumineux) {
-    //                 if (soldat != null && soldat.getX() == i && soldat.getY() == j) {
-    //                     System.out.print(" L ");
-    //                     found = true;
-    //                     break;
-    //                 }
-    //             }
-    //             if (!found) {
-    //                 for (Soldat soldat : entiteObscur) {
-    //                     if (soldat != null && soldat.getX() == i && soldat.getY() == j) {
-    //                         System.out.print(" O ");
-    //                         found = true;
-    //                         break;
-    //                     }
-    //                 }
-    //             }
-    //             if (!found) {
-    //                 System.out.print(" . ");
-    //             }
-    //         }
-    //         System.out.println();
-    //     }
-    // }
+    
     private void afficherCarte() {
         for (int i = 0; i < nbMaxSoldats; i++) {
             for (int j = 0; j < nbMaxSoldats; j++) {
@@ -93,28 +68,34 @@ public class Monde {
         }
     }
 
-    public void jouerTour() {
-        Soldat[] equipeActuelle = (tourJoueur == 0) ? entiteLumineux : entiteObscur;
-        Soldat[] equipeAdverse = (tourJoueur == 0) ? entiteObscur : entiteLumineux;
-
-        System.out.println("Tour"+ nbtour+"du joueur " + (tourJoueur == 0 ? "Lumineux" : "Obscur"));
-
-        if (equipeActuelle != null && !estRempliDeNull(equipeActuelle)) {
-            for (Soldat soldat : equipeActuelle) {
-                if (soldat != null) {
-                    soldat.jouerTour();
-                }
-            }
-
-            // Affichage de l'état après le tour
-            afficherCarte();
-
-            // Changer de tour
-            tourJoueur = (tourJoueur + 1) % 2;
+    public List<Soldat> getEnnemis(Soldat soldat) {
+        if (Arrays.asList(entiteLumineux).contains(soldat)) {
+            return Arrays.asList(entiteObscur);
         } else {
-            if (estRempliDeNull(equipeAdverse)) {
-                System.out.println("Le camp " + (tourJoueur == 0 ? "obscur" : "lumineux") + " a gagné !");
-                partiFini = true;
+            return Arrays.asList(entiteLumineux);
+        }
+    }
+
+    public void jouerTour() {
+        for (Soldat soldat : entiteLumineux) {
+            if (soldat != null) {
+                soldat.jouerTour(getEnnemis(soldat));
+            }
+        }
+        for (Soldat soldat : entiteObscur) {
+            if (soldat != null) {
+                soldat.jouerTour(getEnnemis(soldat));
+            }
+        }
+        // Vérifiez si la partie est terminée
+    }
+
+    public void jouerTour(List<Soldat> ennemis) {
+        if (strategie != null) {
+            strategie.executer(this, ennemis);
+            if (getHp() <= 0) {
+                System.out.println("Soldat mort");
+                //mettre le soldat a null
             }
         }
     }
@@ -175,3 +156,5 @@ public class Monde {
         return true;
     }
 }
+
+

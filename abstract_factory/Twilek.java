@@ -2,7 +2,7 @@ package abstract_factory;
 import Strategy.*;
 public class Twilek extends Soldat {
     public Twilek(int x, int y) {
-        super(x, y, 50);
+        super(x, y, 50,1);
         setStrategie(new AttaquerCac());
     }
 

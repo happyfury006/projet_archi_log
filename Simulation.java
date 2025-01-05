@@ -6,7 +6,7 @@ public class Simulation {
         Simulation simulation = new Simulation();
         simulation.routine();
     }
-
+    
     public void routine() {
         Monde monde = new Monde();
         monde.afficherCarte();
@@ -14,4 +14,5 @@ public class Simulation {
             monde.jouerTour();
         }
     }
+
 }
