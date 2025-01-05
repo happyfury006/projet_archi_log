@@ -60,9 +60,27 @@ public abstract class Soldat {
             strategie.executer(this, ennemis);
             if (hp <= 0) {
                 System.out.println("Le soldat est mort.");
-                // Assuming you want to remove the soldier from the list of enemies
-                ennemis.remove(this);
+                retirerSoldatDeLEquipe(this);
             }
         }
     }
+    
+    private void retirerSoldatDeLEquipe(Soldat soldat) {
+        if (Arrays.asList(entiteLumineux).contains(soldat)) {
+            for (int i = 0; i < entiteLumineux.length; i++) {
+                if (entiteLumineux[i] == soldat) {
+                    entiteLumineux[i] = null;
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < entiteObscur.length; i++) {
+                if (entiteObscur[i] == soldat) {
+                    entiteObscur[i] = null;
+                    break;
+                }
+            }
+        }
+    }
+    
 }

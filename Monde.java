@@ -70,11 +70,16 @@ public class Monde {
 
     public List<Soldat> getEnnemis(Soldat soldat) {
         if (Arrays.asList(entiteLumineux).contains(soldat)) {
-            return Arrays.asList(entiteObscur);
+            return Arrays.stream(entiteObscur)
+                         .filter(s -> s != null && s.getHp() > 0)
+                         .toList();
         } else {
-            return Arrays.asList(entiteLumineux);
+            return Arrays.stream(entiteLumineux)
+                         .filter(s -> s != null && s.getHp() > 0)
+                         .toList();
         }
     }
+    
 
     public void jouerTour() {
         if (tourJoueur == 0) {
