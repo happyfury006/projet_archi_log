@@ -2,7 +2,7 @@ package abstract_factory;
 import Strategy.*;
 public class Wookie extends Soldat {
     public Wookie(int x, int y) {
-        super(x, y, 100);
+        super(x, y, 100,2);
         setStrategie(new AttaquerDist());
     }
 
