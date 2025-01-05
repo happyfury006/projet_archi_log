@@ -1,3 +1,5 @@
+package abstract_factory;
+
 public class Wookie extends Soldat {
     public Wookie(int x, int y) {
         super(x, y, 100);

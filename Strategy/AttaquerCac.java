@@ -1,3 +1,5 @@
+package Strategy;
+
 public class AttaquerCac implements Strategie {
     @Override
     public void executer(Soldat soldat) {

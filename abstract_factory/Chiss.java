@@ -1,3 +1,5 @@
+package abstract_factory;
+
 public class Chiss extends Soldat {
     public Chiss(int x, int y) {
         super(x, y, 100);

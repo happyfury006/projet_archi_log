@@ -1,3 +1,5 @@
+package abstract_factory;
+
 public class Zabrak extends Soldat {
     public Zabrak(int x, int y) {
         super(x, y, 50);
