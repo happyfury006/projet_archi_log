@@ -1,5 +1,6 @@
 package abstract_factory;
 import Strategy.*;
+import java.util.List;
 // Soldat.java
 public abstract class Soldat {
 
@@ -54,13 +55,13 @@ public abstract class Soldat {
 
     protected abstract void ajusterStrategie();
 
-    public void jouerTour() {
+    public void jouerTour(List<Soldat> ennemis) {
         if (strategie != null) {
-            strategie.executer(this);
-            if (getHp() <= 0) {
-                System.out.println("Soldat mort");
-                //mettre le soldat a null
-                
+            strategie.executer(this, ennemis);
+            if (hp <= 0) {
+                System.out.println("Le soldat est mort.");
+                // Assuming you want to remove the soldier from the list of enemies
+                ennemis.remove(this);
             }
         }
     }
