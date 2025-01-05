@@ -4,11 +4,12 @@ import Strategy.*;
 
 public class Monde {
 
-    private final int nbMaxSoldats = 10;
+    private final int nbMaxSoldats = 5;
     private final Soldat[] entiteLumineux;
     private final Soldat[] entiteObscur;
     private final int[][] carte;
     private int tourJoueur;
+    private int nbtour;
     private boolean partiFini;
 
     public Monde() {
@@ -96,7 +97,7 @@ public class Monde {
         Soldat[] equipeActuelle = (tourJoueur == 0) ? entiteLumineux : entiteObscur;
         Soldat[] equipeAdverse = (tourJoueur == 0) ? entiteObscur : entiteLumineux;
 
-        System.out.println("Tour du joueur " + (tourJoueur == 0 ? "Lumineux" : "Obscur"));
+        System.out.println("Tour"+ nbtour+"du joueur " + (tourJoueur == 0 ? "Lumineux" : "Obscur"));
 
         if (equipeActuelle != null && !estRempliDeNull(equipeActuelle)) {
             for (Soldat soldat : equipeActuelle) {
@@ -118,15 +119,21 @@ public class Monde {
         }
     }
 
-    
     private void initialiserSoldats(Soldat[] equipe, String camp) {
         Random random = new Random();
         for (int i = 0; i < nbMaxSoldats; i++) {
             int x, y;
-            do {
-                x = random.nextInt(nbMaxSoldats);
+            if (camp.equals("Lumineux")) {
+                x = 0; // Placer les soldats lumineux sur la première ligne
                 y = random.nextInt(nbMaxSoldats);
-            } while (estOccupe(x, y)); // Vérifier si la case est déjà occupée
+            } else {
+                x = nbMaxSoldats - 1; // Placer les soldats obscurs sur la dernière ligne
+                y = random.nextInt(nbMaxSoldats);
+            }
+
+            while (estOccupe(x, y)) { // Vérifier si la case est déjà occupée
+                y = random.nextInt(nbMaxSoldats);
+            }
 
             if (camp.equals("Lumineux")) {
                 if (i < nbMaxSoldats / 2) {
