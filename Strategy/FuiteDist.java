@@ -6,7 +6,7 @@ public class FuiteDist implements Strategie {
     private int distance(Soldat soldat, Soldat adversaire) {
         int dx = soldat.getX() - adversaire.getX();
         int dy = soldat.getY() - adversaire.getY();
-        return Math.sqrt(dx * dx + dy * dy);
+        return max(dx, dy);
     }
     
     private Soldat trouverAdversaireLePlusProche(Soldat soldat, List<Soldat> ennemis) {
