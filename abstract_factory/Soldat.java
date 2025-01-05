@@ -1,6 +1,7 @@
 package abstract_factory;
 import Strategy.*;
 import java.util.List;
+import java.util.Arrays;
 // Soldat.java
 public abstract class Soldat {
 
