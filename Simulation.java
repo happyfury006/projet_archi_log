@@ -1,3 +1,4 @@
+
 // Simulation.java
 public class Simulation {
 
@@ -8,8 +9,9 @@ public class Simulation {
 
     public void routine() {
         Monde monde = new Monde();
-        while (!monde.isPartiFini()) {
-            monde.jouerTour();
-        }
+        monde.afficherCarte();
+        // while (!monde.isPartiFini()) {
+        //     monde.jouerTour();
+        // }
     }
 }
