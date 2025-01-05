@@ -1,14 +1,15 @@
 import java.util.Random;
 import abstract_factory.*;
 import Strategy.*;
+import State.*;
 import java.util.Arrays;
 import java.util.List;
 
 public class Monde {
 
     private final int nbMaxSoldats = 5;
-    private final Soldat[] entiteLumineux;
-    private final Soldat[] entiteObscur;
+    protected final Soldat[] entiteLumineux;
+    protected final Soldat[] entiteObscur;
     private final int[][] carte;
     private int tourJoueur;
     private int nbtour;
