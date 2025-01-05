@@ -2,7 +2,7 @@ package Strategy;
 import abstract_factory.*;
 import java.util.List;
 
-public class AttaquerCac implements Strategie {
+public class AttaquerDist implements Strategie {
     
     private double distance(Soldat soldat, Soldat adversaire) {
         double dx = soldat.getX() - adversaire.getX();
