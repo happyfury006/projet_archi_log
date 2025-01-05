@@ -90,15 +90,6 @@ public class Monde {
         // Vérifiez si la partie est terminée
     }
 
-    public void jouerTour(List<Soldat> ennemis) {
-        if (strategie != null) {
-            strategie.executer(this, ennemis);
-            if (getHp() <= 0) {
-                System.out.println("Soldat mort");
-                //mettre le soldat a null
-            }
-        }
-    }
 
     private void initialiserSoldats(Soldat[] equipe, String camp) {
         Random random = new Random();
