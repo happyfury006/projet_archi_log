@@ -1,7 +1,13 @@
+
 public class Factory_Cote_Obscur implements AgentFactory {
 
+    @Override
+    public Soldat creerDist(int x, int y) {
+        return new Wookie(x, y);
+    }
 
-    public Soldat creerDist();
-    public Soldat creerCac();
-
+    @Override
+    public Soldat creerCac(int x, int y) {
+        return new Zabrak(x, y);
+    }
 }

@@ -1,7 +1,6 @@
+// Abstract Factory-related files
+
 public interface AgentFactory {
-
-    public Soldat creerDist();
-    public Soldat creerCac();
-
-
+    Soldat creerDist(int x, int y);
+    Soldat creerCac(int x, int y);
 }
