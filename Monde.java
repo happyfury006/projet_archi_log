@@ -22,10 +22,6 @@ public class Monde {
         initialiserSoldats(entiteLumineux, "Lumineux");
         initialiserSoldats(entiteObscur, "Obscur");
 
-        // Positionner les soldats de manière aléatoire
-        positionnerSoldatsAleatoirement(entiteLumineux);
-        positionnerSoldatsAleatoirement(entiteObscur);
-
         System.out.println("Le joueur " + (tourJoueur == 0 ? "Lumineux" : "Obscur") + " commence à jouer.");
     }
 
@@ -105,13 +101,7 @@ public class Monde {
         if (equipeActuelle != null && !estRempliDeNull(equipeActuelle)) {
             for (Soldat soldat : equipeActuelle) {
                 if (soldat != null) {
-                    Random random = new Random();
-                    int action = random.nextInt(2); // 0 pour attaque, 1 pour fuite
-                    if (action == 0) {
-                        soldat.attaquer(equipeAdverse);
-                    } else {
-                        soldat.fuir();
-                    }
+                    soldat.jouerTour();
                 }
             }
 
@@ -128,35 +118,28 @@ public class Monde {
         }
     }
 
+    
     private void initialiserSoldats(Soldat[] equipe, String camp) {
         Random random = new Random();
         for (int i = 0; i < nbMaxSoldats; i++) {
+            int x, y;
+            do {
+                x = random.nextInt(nbMaxSoldats);
+                y = random.nextInt(nbMaxSoldats);
+            } while (estOccupe(x, y)); // Vérifier si la case est déjà occupée
+
             if (camp.equals("Lumineux")) {
                 if (i < nbMaxSoldats / 2) {
-                    equipe[i] = new Wookie(); // Assurez-vous d'avoir une classe Tireur
+                    equipe[i] = new Wookie(x, y); // Assurez-vous d'avoir une classe Wookie
                 } else {
-                    equipe[i] = new Twilek(); // Assurez-vous d'avoir une classe CorpsACorps
+                    equipe[i] = new Twilek(x, y); // Assurez-vous d'avoir une classe Twilek
                 }
             } else if (camp.equals("Obscur")) {
                 if (i < nbMaxSoldats / 2) {
-                    equipe[i] = new Chiss();
+                    equipe[i] = new Chiss(x, y); // Assurez-vous d'avoir une classe Chiss
                 } else {
-                    equipe[i] = new Zabrak();
+                    equipe[i] = new Zabrak(x, y); // Assurez-vous d'avoir une classe Zabrak
                 }
-            }
-        }
-    }
-
-    private void positionnerSoldatsAleatoirement(Soldat[] equipe) {
-        Random random = new Random();
-        for (Soldat soldat : equipe) {
-            if (soldat != null) {
-                int x, y;
-                do {
-                    x = random.nextInt(nbMaxSoldats);
-                    y = random.nextInt(nbMaxSoldats);
-                } while (estOccupe(x, y)); // Vérifier si la case est déjà occupée
-                soldat.setPosition(x, y);
             }
         }
     }
